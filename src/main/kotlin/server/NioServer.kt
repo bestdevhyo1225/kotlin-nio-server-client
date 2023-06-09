@@ -33,6 +33,10 @@ fun main() {
         println("---------------------")
         println("[${serverSocketChannel.localAddress}] Count of channels ready for the event: $eventReadyChannelCount")
 
+        if (eventReadyChannelCount == 0) {
+            continue
+        }
+
         val selectedKeys: Set<SelectionKey> = selector.selectedKeys()
         val selectionKeyIterator: MutableIterator<SelectionKey> =
             selectedKeys.iterator() as MutableIterator<SelectionKey>
