@@ -85,8 +85,7 @@ private fun readAndWrite(selectionKey: SelectionKey) {
         println("[${remoteAddress}] Receive message from client: $receiveMessage")
 
         if (receiveMessageSize == -1) {
-            // 채널 종료
-            socketChannel.close()
+            socketChannel.close() // 채널 종료
             byteBuffer.clear()
 
             println("[${remoteAddress}] Not accepting client messages anymore...")
