@@ -50,10 +50,6 @@ fun main() {
                 readAndWrite(selectionKey = selectionKey)
             }
 
-            if (selectionKey.isWritable) {
-                println("isWritable...")
-            }
-
             selectionKeyIterator.remove()
         }
     }
