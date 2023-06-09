@@ -46,13 +46,12 @@ fun main() {
 
             val selectionKey: SelectionKey = selectionKeyIterator.next()
 
-            when {
-                selectionKey.isAcceptable -> {
-                    registerSocketChannel(serverSocketChannel = serverSocketChannel, selector = selector)
-                }
-                selectionKey.isReadable -> {
-                    readAndWrite(selectionKey = selectionKey)
-                }
+            if (selectionKey.isAcceptable) {
+                registerSocketChannel(serverSocketChannel = serverSocketChannel, selector = selector)
+            }
+
+            if (selectionKey.isReadable) {
+                readAndWrite(selectionKey = selectionKey)
             }
 
             selectionKeyIterator.remove()
