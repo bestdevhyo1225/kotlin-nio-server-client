@@ -55,7 +55,7 @@ fun main() {
     }
 }
 
-fun registerSocketChannel(serverSocketChannel: ServerSocketChannel, selector: Selector) {
+private fun registerSocketChannel(serverSocketChannel: ServerSocketChannel, selector: Selector) {
     try {
         val socketChannel: SocketChannel? = serverSocketChannel.accept()
 
@@ -70,7 +70,7 @@ fun registerSocketChannel(serverSocketChannel: ServerSocketChannel, selector: Se
     }
 }
 
-fun readAndWrite(selectionKey: SelectionKey) {
+private fun readAndWrite(selectionKey: SelectionKey) {
     try {
         // Buffer 생성
         val byteBuffer: ByteBuffer = ByteBuffer.allocate(256)
