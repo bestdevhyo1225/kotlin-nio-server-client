@@ -89,16 +89,16 @@ private fun readAndWrite(selectionKey: SelectionKey) {
 
         if (receiveMessageSize == -1) {
             socketChannel.close() // 채널 종료
-            byteBuffer.clear()
 
             println("[${localAddress}] Not accepting [${remoteAddress}] messages anymore...")
         } else {
             byteBuffer.flip() // 버퍼를 '읽기' 모드에서 '쓰기' 모드로 전환한다.
             socketChannel.write(byteBuffer) // 클라이언트로 메시지 전송
-            byteBuffer.clear()
 
             println("[${localAddress}] Send message to [${remoteAddress}]: $receiveMessage")
         }
+
+        byteBuffer.clear()
     } catch (exception: Exception) {
         println("[readAndWrite] exception: ${exception.localizedMessage}")
     }
