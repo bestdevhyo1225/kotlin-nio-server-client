@@ -80,25 +80,25 @@ private fun readAndWrite(selectionKey: SelectionKey) {
         val byteBuffer: ByteBuffer = ByteBuffer.allocate(256)
         // read 이벤트에 대한 채널
         val socketChannel: SocketChannel = selectionKey.channel() as SocketChannel
+        val localAddress: SocketAddress = socketChannel.localAddress
         val remoteAddress: SocketAddress = socketChannel.remoteAddress
         // 버퍼에서 채널로 데이터 읽기
         val receiveMessageSize: Int = socketChannel.read(byteBuffer)
         val receiveMessage: String = String(byteBuffer.array()).trim()
 
-        println("[${remoteAddress}] Receive message size from client: $receiveMessageSize")
-        println("[${remoteAddress}] Receive message from client: $receiveMessage")
+        println("[${localAddress}] Receive message from [${remoteAddress}]: $receiveMessage")
 
         if (receiveMessageSize == -1) {
             socketChannel.close() // 채널 종료
             byteBuffer.clear()
 
-            println("[${remoteAddress}] Not accepting client messages anymore...")
+            println("[${localAddress}] Not accepting [${remoteAddress}] messages anymore...")
         } else {
             byteBuffer.flip() // 버퍼를 '읽기' 모드에서 '쓰기' 모드로 전환한다.
             socketChannel.write(byteBuffer) // 클라이언트로 메시지 전송
             byteBuffer.clear()
 
-            println("[${remoteAddress}] Send message to client: $receiveMessage")
+            println("[${localAddress}] Send message to [${remoteAddress}]: $receiveMessage")
         }
     } catch (exception: Exception) {
         println("[readAndWrite] exception: ${exception.localizedMessage}")
