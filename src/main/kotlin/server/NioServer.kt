@@ -8,11 +8,12 @@ import java.nio.channels.Selector
 import java.nio.channels.ServerSocketChannel
 import java.nio.channels.SocketChannel
 
-const val hostname = "localhost"
-const val port: Int = 3000
-
 fun main() {
     println("Start nio server...")
+
+    // 연결 정보
+    val hostname = "localhost"
+    val port = 3000
 
     // Selector 생성
     val selector: Selector = Selector.open()

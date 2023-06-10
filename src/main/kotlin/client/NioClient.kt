@@ -7,12 +7,12 @@ import java.net.SocketAddress
 import java.nio.ByteBuffer
 import java.nio.channels.SocketChannel
 
-const val hostname = "localhost"
-const val port: Int = 3000
-
 fun main() {
     println("Start nio client...")
 
+    // 연결 정보
+    val hostname = "localhost"
+    val port = 3000
     val inetSocketAddress = InetSocketAddress(hostname, port)
 
     // SocketChannel 생성
