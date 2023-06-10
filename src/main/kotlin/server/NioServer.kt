@@ -93,7 +93,7 @@ private fun readAndWrite(selectionKey: SelectionKey) {
 
             println("[${localAddress}] Not accepting [${remoteAddress}] messages anymore...")
         } else {
-            byteBuffer.flip() // 버퍼를 '읽기' 모드에서 '쓰기' 모드로 전환한다.
+            byteBuffer.flip() // 버퍼를 모드로 전환한다. (쓰기 -> 읽기 or 읽기 -> 쓰기)
             socketChannel.write(byteBuffer) // 클라이언트로 메시지 전송
 
             println("[${localAddress}] Send message to [${remoteAddress}]: $receiveMessage")
